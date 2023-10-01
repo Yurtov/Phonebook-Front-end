@@ -8,10 +8,11 @@ import { AiOutlineEdit, AiOutlineDelete, AiOutlineClose } from 'react-icons/ai';
 import {
   List,
   ContactItem,
-  Span,
+  Div,
   ActionBtn,
   Stub,
   BtnContainer,
+  PhoneNumber,
 } from './ContactList.styled';
 import { BtnClose } from '../Loyaut';
 import { customStyles } from '../../pages/Contacts/Contacts';
@@ -41,9 +42,11 @@ export const ContactList = ({ toastDelete, toastEdit }) => {
             .sort((a, b) => a.name.localeCompare(b.name))
             .map(contact => (
               <ContactItem key={contact.id}>
-                 <p>{contact.name}:</p>
-                  <p>{contact.number}</p>
-              
+                <Div>
+                  <p>{contact.name}</p>
+                  <PhoneNumber href={`tel:${contact.number}`}>{contact.number}</PhoneNumber>
+                </Div>
+
                 <BtnContainer>
                   <ActionBtn
                     type="button"

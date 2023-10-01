@@ -15,9 +15,16 @@ export const ContactItem = styled.li`
   align-items: center;
 `;
 
-export const Span = styled.span`
+export const Div = styled.div`
+  width: 100%;
   display: flex;
-  gap: 15px;
+  gap: 20px;
+  justify-content: space-between;
+`;
+
+export const PhoneNumber = styled.a`
+  text-decoration: none;
+  color: #4287f5;
 `;
 
 export const BtnContainer = styled.div`
