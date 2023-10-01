@@ -13,8 +13,8 @@ import {
   Stub,
   BtnContainer,
 } from './ContactList.styled';
-import { BtnClose } from '../Loyaut';
-import { customStyles } from '../App';
+import { BtnClose } from '../Loyaut'
+import { customStyles } from '../../pages/Contacts';
 import { ContactEditForm } from 'components/ContactEditForm/ContactEditForm';
 
 export const ContactList = ({ toastDelete, toastEdit }) => {
@@ -27,7 +27,7 @@ export const ContactList = ({ toastDelete, toastEdit }) => {
     setContact({
       id: e.currentTarget.id,
       name: e.currentTarget.name,
-      phone: e.currentTarget.value,
+      number: e.currentTarget.value,
     });
     setIsModalEditOpen(true);
   };
@@ -42,14 +42,14 @@ export const ContactList = ({ toastDelete, toastEdit }) => {
             .map(contact => (
               <ContactItem key={contact.id}>
                 <Span>
-                  {contact.name}: {contact.phone}
+                  {contact.name}: {contact.number}
                   <BtnContainer>
                     <ActionBtn
                       type="button"
                       onClick={openModalEdit}
                       id={contact.id}
                       name={contact.name}
-                      value={contact.phone}
+                      value={contact.number}
                     >
                       <AiOutlineEdit size={27} />
                     </ActionBtn>

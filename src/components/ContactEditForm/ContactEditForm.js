@@ -27,7 +27,7 @@ const schema = Yup.object().shape({
       nameRegExp,
       "Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
     ),
-  phone: Yup.string()
+  number: Yup.string()
     .matches(
       phoneRegExp,
       'Phone number must be digits and can contain spaces, dashes, parentheses and can start with +'
@@ -38,9 +38,8 @@ const schema = Yup.object().shape({
 export const ContactEditForm = ({ onClose, contact, toastEdit }) => {
   const dispatch = useDispatch();
   const [contactToEdit, setContactToEdit] = useState({
-    id: contact.id,
     name: contact.name,
-    phone: contact.phone,
+    number: contact.number,
   });
   const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
@@ -51,8 +50,8 @@ export const ContactEditForm = ({ onClose, contact, toastEdit }) => {
     if (targetName === 'name') {
       setContactToEdit(prevState => ({ ...prevState, name: values }));
     }
-    if (targetName === 'phone') {
-      setContactToEdit(prevState => ({ ...prevState, phone: values }));
+    if (targetName === 'number') {
+      setContactToEdit(prevState => ({ ...prevState, number: values }));
     }
   };
 
@@ -60,7 +59,7 @@ export const ContactEditForm = ({ onClose, contact, toastEdit }) => {
     <Formik
       initialValues={{
         name: `${contact.name}`,
-        phone: `${contact.phone}`,
+        number: `${contact.number}`,
       }}
       validationSchema={schema}
       onSubmit={() => {
@@ -79,9 +78,9 @@ export const ContactEditForm = ({ onClose, contact, toastEdit }) => {
 
         <Label onChange={handleChange}>
           Number <AiOutlinePhone />
-          <StyledField name="phone" />
+          <StyledField name="number" />
           <br />
-          <StyledErrorMessage name="phone" component="div" />
+          <StyledErrorMessage name="number" component="div" />
         </Label>
 
         <Button type="submit">

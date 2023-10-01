@@ -26,7 +26,7 @@ const schema = Yup.object().shape({
       nameRegExp,
       "Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
     ),
-  phone: Yup.string()
+  number: Yup.string()
     .matches(
       phoneRegExp,
       'Phone number must be digits and can contain spaces, dashes, parentheses and can start with +'
@@ -44,7 +44,7 @@ export const ContactForm = ({ onClose, toastAdd, toastErrorAdd }) => {
     <Formik
       initialValues={{
         name: '',
-        phone: '',
+        number: '',
       }}
       validationSchema={schema}
       onSubmit={(values, actions) => {
@@ -52,9 +52,9 @@ export const ContactForm = ({ onClose, toastAdd, toastErrorAdd }) => {
           contact =>
             contact.name.toLowerCase().trim() ===
               values.name.toLowerCase().trim() ||
-            contact.phone.trim() === values.phone.trim()
+            contact.number.trim() === values.number.trim()
         )
-          ? toastErrorAdd(values.name, values.phone)
+          ? toastErrorAdd(values.name, values.number)
           : dispatch(
               addContact({
                 ...values,
@@ -76,9 +76,9 @@ export const ContactForm = ({ onClose, toastAdd, toastErrorAdd }) => {
 
         <Label>
           Number <AiOutlinePhone />
-          <StyledField name="phone" />
+          <StyledField name="number" />
           <br />
-          <StyledErrorMessage name="phone" component="div" />
+          <StyledErrorMessage name="number" component="div" />
         </Label>
 
         <Button type="submit">
