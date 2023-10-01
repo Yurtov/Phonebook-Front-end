@@ -41,10 +41,9 @@ export const ContactList = ({ toastDelete, toastEdit }) => {
             .sort((a, b) => a.name.localeCompare(b.name))
             .map(contact => (
               <ContactItem key={contact.id}>
-                <Span>
-                  <p>{contact.name}:</p>
+                 <p>{contact.name}:</p>
                   <p>{contact.number}</p>
-                </Span>
+              
                 <BtnContainer>
                   <ActionBtn
                     type="button"
