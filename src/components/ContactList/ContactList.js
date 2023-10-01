@@ -13,8 +13,8 @@ import {
   Stub,
   BtnContainer,
 } from './ContactList.styled';
-import { BtnClose } from '../Loyaut'
-import { customStyles } from '../../pages/Contacts';
+import { BtnClose } from '../Loyaut';
+import { customStyles } from '../../pages/Contacts/Contacts';
 import { ContactEditForm } from 'components/ContactEditForm/ContactEditForm';
 
 export const ContactList = ({ toastDelete, toastEdit }) => {
@@ -42,27 +42,28 @@ export const ContactList = ({ toastDelete, toastEdit }) => {
             .map(contact => (
               <ContactItem key={contact.id}>
                 <Span>
-                  {contact.name}: {contact.number}
-                  <BtnContainer>
-                    <ActionBtn
-                      type="button"
-                      onClick={openModalEdit}
-                      id={contact.id}
-                      name={contact.name}
-                      value={contact.number}
-                    >
-                      <AiOutlineEdit size={27} />
-                    </ActionBtn>
-                    <ActionBtn
-                      type="button"
-                      onClick={() => {
-                        dispatch(deleteContact(contact.id)) && toastDelete();
-                      }}
-                    >
-                      <AiOutlineDelete size={27} />
-                    </ActionBtn>
-                  </BtnContainer>
+                  <p>{contact.name}:</p>
+                  <p>{contact.number}</p>
                 </Span>
+                <BtnContainer>
+                  <ActionBtn
+                    type="button"
+                    onClick={openModalEdit}
+                    id={contact.id}
+                    name={contact.name}
+                    value={contact.number}
+                  >
+                    <AiOutlineEdit size={27} />
+                  </ActionBtn>
+                  <ActionBtn
+                    type="button"
+                    onClick={() => {
+                      dispatch(deleteContact(contact.id)) && toastDelete();
+                    }}
+                  >
+                    <AiOutlineDelete size={27} />
+                  </ActionBtn>
+                </BtnContainer>
               </ContactItem>
             ))
         ) : (

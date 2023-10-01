@@ -30,6 +30,8 @@ body {
     height: auto;
   }
 
-
+  p {
+    margin: 0
+  }
 
 `;

@@ -7,19 +7,17 @@ import { Hourglass } from 'react-loader-spinner';
 import { selectContacts, selectError, selectIsLoading } from 'redux/selectors';
 import { fetchContacts } from 'redux/operations';
 import { logOut } from 'redux/auth/operations';
-import { ContactForm } from '../components/ContactForm/ContactForm';
-import { ContactList } from '../components/ContactList/ContactList';
-import { Filter } from '../components/Filter/Filter';
+import { ContactForm } from '../../components/ContactForm/ContactForm';
+import { ContactList } from '../../components/ContactList/ContactList';
+import { Filter } from '../../components/Filter/Filter';
 import {
   Layout,
-  BtnOpen,
   Contacts as ContactsListSlyled,
   BtnClose,
-  Title,
   SubTitle,
   Massage,
-} from '../components/Loyaut';
-
+} from '../../components/Loyaut';
+import { BtnSingOut, Header, BtnOpen } from './Contscts.styled';
 
 export const customStyles = {
   content: {
@@ -63,11 +61,13 @@ const Contacts = () => {
 
   return (
     <Layout>
-      <button type="button" onClick={() => dispatch(logOut())}>
-        Sing Out
-      </button>
+      <Header>
+        <Filter />
+        <BtnSingOut type="button" onClick={() => dispatch(logOut())}>
+          Sing Out
+        </BtnSingOut>
+      </Header>
 
-      <Title>Phonebook</Title>
       <BtnOpen onClick={openModalAdd} data-btn="btn-add">
         <AiOutlineUserAdd size={45} />
       </BtnOpen>
@@ -87,7 +87,6 @@ const Contacts = () => {
         )}
         {contactsList.length > 0 ? (
           <div>
-            <Filter />
             <ContactList
               toastDelete={ToastDelete}
               toastEdit={ToastEditSuccess}

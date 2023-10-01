@@ -10,8 +10,6 @@ import {
   Text,
 } from './Home.styled';
 
-const { Link } = require('react-router-dom');
-
 const Home = () => {
   const { isLoggedIn } = useAuth();
   return (

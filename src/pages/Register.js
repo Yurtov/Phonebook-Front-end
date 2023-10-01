@@ -17,11 +17,16 @@ import { register } from 'redux/auth/operations';
 const defaultTheme = createTheme();
 
 export default function Registration() {
+  const [checked, setChecked] = React.useState(false);
   const dispatch = useDispatch();
 
-  const handleSubmit = event => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
+  const handleCheck = e => {
+    setChecked(checked => !checked);
+  };
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    const data = new FormData(e.currentTarget);
     const fullName = `${data.get('firstName')} ${data.get('lastName')}`;
     dispatch(
       register({
@@ -46,7 +51,7 @@ export default function Registration() {
         >
           <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }} />
           <Typography component="h1" variant="h5">
-          Sing Up
+            Sing Up
           </Typography>
           <Box
             component="form"
@@ -100,20 +105,36 @@ export default function Registration() {
               <Grid item xs={12}>
                 <FormControlLabel
                   control={
-                    <Checkbox value="allowExtraEmails" color="primary" />
+                    <Checkbox
+                      value="allowExtraEmails"
+                      color="primary"
+                      onChange={handleCheck}
+                    />
                   }
                   label="I accepted that my data is for study."
                 />
               </Grid>
             </Grid>
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-            >
-              Sing Up
-            </Button>
+            {!checked ? (
+              <Button
+                disabled
+                type="submit"
+                fullWidth
+                variant="contained"
+                sx={{ mt: 3, mb: 2 }}
+              >
+                Sing Up
+              </Button>
+            ) : (
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                sx={{ mt: 3, mb: 2 }}
+              >
+                Sing Up
+              </Button>
+            )}
             <Grid container justifyContent="flex-end">
               <Grid item>
                 <Link to="/login" variant="body2">

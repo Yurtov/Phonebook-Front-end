@@ -14,13 +14,13 @@ export const Filter = () => {
 
   return (
     <Label>
-      <AiOutlineFileSearch size={30} />
+      <AiOutlineFileSearch size={35} />
       <Input
         placeholder="Find contacts by name"
         type="text"
         value={filter}
         onChange={changeInputValue}
       />
-    </Label>
+    </Label>  
   );
 };

@@ -6,12 +6,21 @@ export const Label = styled.label`
   align-items: center;
   gap: 15px;
   font-size: 20px;
-  color: #04941f;
-  margin-top: 10px;
+  color: #fff;
 `;
 
 export const Input = styled.input`
-  outline: 1px solid #04941f;
+  border: none;
+  outline: none;
+  padding-left: 4px;
+  padding-right: 4px;
   height: 30px;
   font-size: 20px;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 600px;
+  background-color: #fff;
+  border-radius: 3px;
+  overflow: hidden;
 `;

@@ -6,7 +6,7 @@ export const Container = styled.div`
     margin-left: 100px;
   }
   @media (min-width: 1100px) {
-    margin-left: 250px;
+    margin-left: 200px;
   }
 `;
 
@@ -16,6 +16,11 @@ export const Title = styled.h1`
   font-weight: 900;
 
   @media (min-width: 768px) {
+    margin-top: 150px;
+    font-size: 40px;
+  }
+
+  @media (min-width: 1100px) {
     margin-top: 250px;
     font-size: 40px;
   }
@@ -107,6 +112,6 @@ export const BtnLogined = styled(Link)`
 `;
 
 export const Text = styled.p`
-  color: white;
+  color: #000;
   font-size: 20px;
 `;
