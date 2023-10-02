@@ -5,7 +5,7 @@ import Contacts from 'pages/Contacts/Contacts';
 import Login from 'pages/Login';
 import Register from 'pages/Register';
 import Home from 'pages/Home/Home';
-import { useAuth } from './hooks';
+import { useAuth } from '../hooks';
 import { refreshUser } from 'redux/auth/operations';
 import { PrivateRoute } from './PrivateRoute';
 import { RestrictedRoute } from './RestrictedRoute';

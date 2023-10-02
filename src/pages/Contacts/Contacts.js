@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Modal from 'react-modal';
-import toast, { Toaster } from 'react-hot-toast';
 import { AiOutlineUserAdd, AiOutlineClose } from 'react-icons/ai';
 import { Hourglass } from 'react-loader-spinner';
 import { selectContacts, selectError, selectIsLoading } from 'redux/selectors';
@@ -17,7 +16,7 @@ import {
   SubTitle,
   Massage,
 } from '../../components/Loyaut';
-import { BtnSingOut, Header, BtnOpen } from './Contscts.styled';
+import { BtnSingOut, Header, BtnOpen } from './Contacts.styled';
 
 export const customStyles = {
   content: {
@@ -50,12 +49,6 @@ const Contacts = () => {
     setTimeout(() => setLoaderVisibility(false), 1000);
   }, []);
 
-  const ToastAddSuccess = () => toast.success('Contact add to your phonebook');
-  const ToastAlreadyHaveContact = (name, phone) =>
-    toast.error(`${name} or ${phone} is already in contact`);
-  const ToastDelete = () => toast.success('Contact delete from your phonebook');
-  const ToastEditSuccess = () => toast.success('Contact edit success');
-
   const openModalAdd = () => setIsModalAppOpen(true);
   const closeModalAdd = () => setIsModalAppOpen(false);
 
@@ -87,10 +80,7 @@ const Contacts = () => {
         )}
         {contactsList.length > 0 ? (
           <div>
-            <ContactList
-              toastDelete={ToastDelete}
-              toastEdit={ToastEditSuccess}
-            />
+            <ContactList />
           </div>
         ) : (
           <Massage>Contact list is empty</Massage>
@@ -105,14 +95,8 @@ const Contacts = () => {
         <BtnClose onClick={closeModalAdd}>
           <AiOutlineClose size={25} />
         </BtnClose>
-        <ContactForm
-          onClose={closeModalAdd}
-          style={customStyles}
-          toastAdd={ToastAddSuccess}
-          toastErrorAdd={ToastAlreadyHaveContact}
-        />
+        <ContactForm onClose={closeModalAdd} style={customStyles} />
       </Modal>
-      <Toaster position="top-center" reverseOrder={false} />
     </Layout>
   );
 };

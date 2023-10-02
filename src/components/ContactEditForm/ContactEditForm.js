@@ -13,6 +13,7 @@ import {
   Button,
 } from './ContactEditForm.styled';
 import { selectError, selectIsLoading } from 'redux/selectors';
+import toast from 'react-hot-toast';
 
 const nameRegExp = /^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$/;
 const phoneRegExp =
@@ -38,6 +39,7 @@ const schema = Yup.object().shape({
 export const ContactEditForm = ({ onClose, contact, toastEdit }) => {
   const dispatch = useDispatch();
   const [contactToEdit, setContactToEdit] = useState({
+    id: contact.id,
     name: contact.name,
     number: contact.number,
   });
@@ -55,6 +57,9 @@ export const ContactEditForm = ({ onClose, contact, toastEdit }) => {
     }
   };
 
+  const ToastEditSuccess = () => toast.success('Contact edit success');
+
+
   return (
     <Formik
       initialValues={{
@@ -64,7 +69,7 @@ export const ContactEditForm = ({ onClose, contact, toastEdit }) => {
       validationSchema={schema}
       onSubmit={() => {
         dispatch(editContact(contactToEdit)) &&
-          toastEdit() &&
+        ToastEditSuccess() &&
           setTimeout(() => onClose(), 500);
       }}
     >

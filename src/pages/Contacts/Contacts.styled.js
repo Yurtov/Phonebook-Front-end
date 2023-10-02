@@ -31,6 +31,7 @@ export const BtnSingOut = styled.button`
   font-weight: 600;
   &:hover,
   :focus {
+    border-radius: 4px;
     box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.5);
   }
 `;

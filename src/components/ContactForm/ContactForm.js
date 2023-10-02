@@ -1,10 +1,11 @@
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
+import toast from 'react-hot-toast';
+import { RotatingLines } from 'react-loader-spinner';
 import { addContact } from 'redux/operations';
 import { selectContacts, selectError, selectIsLoading } from 'redux/selectors';
 import { AiOutlineUser, AiOutlinePhone } from 'react-icons/ai';
-import { RotatingLines } from 'react-loader-spinner';
 import {
   StyledForm,
   Label,
@@ -34,11 +35,15 @@ const schema = Yup.object().shape({
     .required('Required'),
 });
 
-export const ContactForm = ({ onClose, toastAdd, toastErrorAdd }) => {
+export const ContactForm = ({ onClose }) => {
   const dispatch = useDispatch();
   const contacts = useSelector(selectContacts);
   const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
+
+  const toastAddSuccess = () => toast.success('Contact add to your phonebook');
+  const toastAlreadyHaveContact = (name, phone) =>
+    toast.error(`${name} or ${phone} is already in contact`);
 
   return (
     <Formik
@@ -54,7 +59,7 @@ export const ContactForm = ({ onClose, toastAdd, toastErrorAdd }) => {
               values.name.toLowerCase().trim() ||
             contact.number.trim() === values.number.trim()
         )
-          ? toastErrorAdd(values.name, values.number)
+          ? toastAlreadyHaveContact(values.name, values.number)
           : dispatch(
               addContact({
                 ...values,
@@ -62,7 +67,7 @@ export const ContactForm = ({ onClose, toastAdd, toastErrorAdd }) => {
             ) &&
             !isLoading &&
             !error &&
-            toastAdd() &&
+            toastAddSuccess() &&
             setTimeout(() => onClose() && actions.resetForm(), 500);
       }}
     >

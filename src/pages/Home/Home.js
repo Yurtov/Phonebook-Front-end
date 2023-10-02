@@ -1,4 +1,4 @@
-import { useAuth } from 'components/hooks';
+import { useAuth } from 'hooks';
 import {
   Container,
   Title,
