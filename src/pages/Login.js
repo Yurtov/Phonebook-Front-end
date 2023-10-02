@@ -1,4 +1,5 @@
 import * as React from 'react';
+import toast from 'react-hot-toast/headless';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -11,11 +12,17 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { logIn } from 'redux/auth/operations';
+import { useAuth } from 'hooks';
 
 const defaultTheme = createTheme();
 
 export default function Login() {
   const dispatch = useDispatch();
+  const { error } = useAuth();
+
+  React.useEffect(() => {
+    toast.error('Login or password is incorrect');
+  }, [error]);
 
   const handleSubmit = event => {
     event.preventDefault();
@@ -26,11 +33,6 @@ export default function Login() {
         password: data.get('password'),
       })
     );
-       // setTimeout(() => {
-    //   isLoggedIn
-    //     ? toast.success('Succes Logined')
-    //     : toast.error('Login or password is incorrect');
-    // }, 0);
   };
 
   return (
