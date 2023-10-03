@@ -20,6 +20,7 @@ export const register = createAsyncThunk(
       setAuthHeader(res.data.token);
       return res.data;
     } catch (error) {
+      alert('Check that the fields are filled in correctly');
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -33,6 +34,7 @@ export const logIn = createAsyncThunk(
       setAuthHeader(res.data.token);
       return res.data;
     } catch (error) {
+      alert('Login or password is inccorect');
       return thunkAPI.rejectWithValue(error.message);
     }
   }

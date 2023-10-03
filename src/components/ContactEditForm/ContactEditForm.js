@@ -59,7 +59,6 @@ export const ContactEditForm = ({ onClose, contact, toastEdit }) => {
 
   const ToastEditSuccess = () => toast.success('Contact edit success');
 
-
   return (
     <Formik
       initialValues={{
@@ -69,7 +68,7 @@ export const ContactEditForm = ({ onClose, contact, toastEdit }) => {
       validationSchema={schema}
       onSubmit={() => {
         dispatch(editContact(contactToEdit)) &&
-        ToastEditSuccess() &&
+          ToastEditSuccess() &&
           setTimeout(() => onClose(), 500);
       }}
     >
@@ -92,7 +91,7 @@ export const ContactEditForm = ({ onClose, contact, toastEdit }) => {
           Edit contact
           {isLoading && !error && (
             <RotatingLines
-              strokeColor="grey"
+              strokeColor="white"
               strokeWidth="5"
               animationDuration="0.75"
               width="20"

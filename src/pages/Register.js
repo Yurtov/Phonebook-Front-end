@@ -13,21 +13,31 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { register } from 'redux/auth/operations';
+import { toast } from 'react-hot-toast';
 
 const defaultTheme = createTheme();
 
 export default function Registration() {
   const [checked, setChecked] = React.useState(false);
+  const [passwordLength, setPasswordLength] = React.useState(null);
   const dispatch = useDispatch();
 
-  const handleCheck = e => {
+  const handleCheck = () => {
     setChecked(checked => !checked);
+  };
+
+  const handleChange = e => {
+    setPasswordLength(e.target.value.length);
   };
 
   const handleSubmit = e => {
     e.preventDefault();
     const data = new FormData(e.currentTarget);
     const fullName = `${data.get('firstName')} ${data.get('lastName')}`;
+    if (passwordLength < 7) {
+      console.log('Password must be at least 7 characters');
+      return toast.error('Password must be at least 7 characters');
+    }
     dispatch(
       register({
         name: fullName,
@@ -100,6 +110,8 @@ export default function Registration() {
                   type="password"
                   id="password"
                   autoComplete="new-password"
+                  minLength="11"
+                  onChange={handleChange}
                 />
               </Grid>
               <Grid item xs={12}>

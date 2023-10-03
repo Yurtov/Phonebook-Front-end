@@ -28,6 +28,10 @@ export const StyledErrorMessage = styled(ErrorMessage)`
 
 export const Button = styled.button`
   margin: 20px auto 0;
+  border: none;
+  border-radius: 4px;
+  background-color: #4287f5;
+  color: white;
   font-size: 20px;
   cursor: pointer;
   width: 250px;
@@ -35,4 +39,10 @@ export const Button = styled.button`
   justify-content: center;
   align-items: center;
   gap: 10px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  &:hover,
+  :focus {
+    background-color: #1560f5;
+  }
 `;
