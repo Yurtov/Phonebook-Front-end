@@ -73,8 +73,7 @@ export const ContactEditForm = ({ onClose, contact, toastEdit }) => {
         contacts.some(
           contact =>
             contact.name.toLowerCase().trim() ===
-              values.name.toLowerCase().trim() ||
-            contact.number.trim() === values.number.trim()
+            values.name.toLowerCase().trim()
         )
           ? toastAlreadyHaveContact(values.name, values.number)
           : dispatch(editContact(contactToEdit)) &&
