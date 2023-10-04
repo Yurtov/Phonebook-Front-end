@@ -59,8 +59,8 @@ export const ContactEditForm = ({ onClose, contact, toastEdit }) => {
   };
 
   const ToastEditSuccess = () => toast.success('Contact edit success');
-  const toastAlreadyHaveContact = (name, phone) =>
-    toast.error(`${name} or ${phone} is already in contact`);
+  const toastAlreadyHaveContact = (name) =>
+    toast.error(`${name} is already in contact`);
 
   return (
     <Formik
@@ -75,7 +75,7 @@ export const ContactEditForm = ({ onClose, contact, toastEdit }) => {
             contact.name.toLowerCase().trim() ===
             values.name.toLowerCase().trim()
         )
-          ? toastAlreadyHaveContact(values.name, values.number)
+          ? toastAlreadyHaveContact(values.name)
           : dispatch(editContact(contactToEdit)) &&
             ToastEditSuccess() &&
             setTimeout(() => onClose(), 500);
