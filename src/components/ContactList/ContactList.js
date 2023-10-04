@@ -33,7 +33,7 @@ export const ContactList = () => {
     setIsModalEditOpen(true);
   };
   const closeModalEdit = () => setIsModalEditOpen(false);
-  const toastDelete = () => toast.success('Contact delete from your phonebook');
+  const toastDelete = () => toast.success('Contact has been deleted from your phone book');
 
   return (
     <>
