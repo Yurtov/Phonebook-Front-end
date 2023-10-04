@@ -12,7 +12,7 @@ import {
   StyledErrorMessage,
   Button,
 } from './ContactEditForm.styled';
-import { selectError, selectIsLoading } from 'redux/selectors';
+import { selectContacts, selectError, selectIsLoading } from 'redux/selectors';
 import toast from 'react-hot-toast';
 
 const nameRegExp = /^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$/;
@@ -43,6 +43,7 @@ export const ContactEditForm = ({ onClose, contact, toastEdit }) => {
     name: contact.name,
     number: contact.number,
   });
+  const contacts = useSelector(selectContacts);
   const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
 
@@ -58,6 +59,8 @@ export const ContactEditForm = ({ onClose, contact, toastEdit }) => {
   };
 
   const ToastEditSuccess = () => toast.success('Contact edit success');
+  const toastAlreadyHaveContact = (name, phone) =>
+    toast.error(`${name} or ${phone} is already in contact`);
 
   return (
     <Formik
@@ -66,10 +69,17 @@ export const ContactEditForm = ({ onClose, contact, toastEdit }) => {
         number: `${contact.number}`,
       }}
       validationSchema={schema}
-      onSubmit={() => {
-        dispatch(editContact(contactToEdit)) &&
-          ToastEditSuccess() &&
-          setTimeout(() => onClose(), 500);
+      onSubmit={values => {
+        contacts.some(
+          contact =>
+            contact.name.toLowerCase().trim() ===
+              values.name.toLowerCase().trim() ||
+            contact.number.trim() === values.number.trim()
+        )
+          ? toastAlreadyHaveContact(values.name, values.number)
+          : dispatch(editContact(contactToEdit)) &&
+            ToastEditSuccess() &&
+            setTimeout(() => onClose(), 500);
       }}
     >
       <StyledForm>

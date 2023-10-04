@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import toast from 'react-hot-toast/headless';
+import toast from 'react-hot-toast';
 
 axios.defaults.baseURL = 'https://connections-api.herokuapp.com/';
 
@@ -20,7 +20,7 @@ export const register = createAsyncThunk(
       setAuthHeader(res.data.token);
       return res.data;
     } catch (error) {
-      alert('Check that the fields are filled in correctly');
+      toast.error('Check that the fields are filled in correctly');
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -34,7 +34,7 @@ export const logIn = createAsyncThunk(
       setAuthHeader(res.data.token);
       return res.data;
     } catch (error) {
-      alert('Login or password is inccorect');
+      toast.error('Login or password is inccorect')
       return thunkAPI.rejectWithValue(error.message);
     }
   }
