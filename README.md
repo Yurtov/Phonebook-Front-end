@@ -1,4 +1,4 @@
-# Contacts App with React and Redux
+# Phonebook App with React and Redux
 
 This is a simple Contacts application built with React and Redux. The app includes private and public routes, user registration, login functionality, and utilizes a REST API for handling requests.
 
